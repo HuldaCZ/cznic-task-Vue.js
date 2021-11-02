@@ -7,14 +7,40 @@
     <div class="card-body mt-2 mb-2">
       <v-row key="" class="mn-2">
         <ul class="flag-list">
-          <div :key="flag.name" v-for="flag in filterFlags()">
+          <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(0))">
             <li v-if="flag.active">
-              <v-icon color="green"> mdi-checkbox-marked-circle</v-icon>
+              <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
               <font color="green"> {{ flag.description }} </font>
             </li>
 
             <li v-if="!flag.active">
-              <v-icon color="red"> mdi-close-circle</v-icon>
+              <v-icon color="red" small> mdi-close-circle</v-icon>
+              <font color="red"> {{ flag.description }} </font>
+            </li>
+          </div>
+        </ul>
+        <ul class="flag-list">
+          <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(1))">
+            <li v-if="flag.active">
+              <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
+              <font color="green"> {{ flag.description }} </font>
+            </li>
+
+            <li v-if="!flag.active">
+              <v-icon color="red" small> mdi-close-circle</v-icon>
+              <font color="red"> {{ flag.description }} </font>
+            </li>
+          </div>
+        </ul>
+          <ul class="flag-list">
+          <div :key="flag.name" v-for="flag in activeFlags(flagsGroupRest())">
+            <li v-if="flag.active">
+              <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
+              <font color="green"> {{ flag.description }} </font>
+            </li>
+
+            <li v-if="!flag.active">
+              <v-icon color="red" small> mdi-close-circle</v-icon>
               <font color="red"> {{ flag.description }} </font>
             </li>
           </div>
@@ -29,18 +55,41 @@ export default {
   name: "StateFlagsCard",
   props: {
     flags: [],
+    groups: [],
     showAll: Boolean,
   },
+  data() {
+    return {
+      group1: [],
+    };
+  },
   methods: {
-    filterFlags() {
-      if (!this.showAll) {
-        const flagsCopy = [...this.flags];
+    activeFlags(flagsInput) {
+      if (this.showAll) {
+        const flagsCopy = [...flagsInput];
         return flagsCopy.filter((flag) => {
           return flag.active;
         });
       } else {
-        return this.flags;
+        return flagsInput;
       }
+    },
+
+    flagsGroup(i) {
+      const flagsCopy = [...this.flags];
+      const intersection = flagsCopy.filter((flag) =>
+        this.groups[i].includes(flag.name)
+      );
+      return intersection;
+    },
+
+    flagsGroupRest() {
+      const flagsCopy = [...this.flags];
+      const allGroups = [...this.groups[0], ...this.groups[1]];
+      const intersection = flagsCopy.filter(
+        (flag) => !allGroups.includes(flag.name)
+      );
+      return intersection;
     },
   },
 };
@@ -67,12 +116,12 @@ h3 {
 .flag-list {
   list-style-type: none;
   display: grid;
-  grid-template-rows: repeat(9, min-content);
+  grid-template-rows: repeat(11, min-content);
   grid-auto-flow: column;
   grid-column-gap: 50px;
 }
 
 div {
-  font-size: 13px;
+  font-size: 12px;
 }
 </style>

@@ -5,6 +5,7 @@
       <SideBar :mini="sideBarMini" />
       <Dashboard />
     </div>
+    <UserPopover />
   </v-app>
 </template>
 
@@ -12,6 +13,7 @@
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 import Dashboard from "./components/Dashboard";
+import UserPopover from "./components/UserPopover";
 
 export default {
   name: "App",
@@ -20,6 +22,7 @@ export default {
     NavBar,
     SideBar,
     Dashboard,
+    UserPopover,
   },
 
   data() {

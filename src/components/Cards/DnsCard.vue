@@ -12,44 +12,39 @@
         </v-col>
         <v-col sm="7">
           <p class="handle-text">
-            <font color="cornflowerblue"> {{ userData.handle }}</font>
+            <font color="cornflowerblue"> {{ dnsData.handle }}</font>
           </p>
         </v-col>
       </v-row>
       <v-row class="card-row mt-n8 mb-n7">
-        <v-col sm="1" class="ml-2 mr-n3">
-          <v-icon v-if="userData.publish.organization" color="green" small>
-            mdi-eye</v-icon
-          >
-          <v-icon v-if="!userData.publish.organization" color="red" small>
-            mdi-eye-off</v-icon
-          >
-        </v-col>
+        <v-col sm="1" class="ml-2 mr-n3"> </v-col>
         <v-col sm="3">
-          <p class="item-label">Organization:</p>
+          <p class="item-label">Registrar:</p>
         </v-col>
         <v-col sm="7">
           <p>
-            {{ userData.organization }}
+            {{ dnsData.registrar }}
           </p>
         </v-col>
       </v-row>
-      <v-row class="card-row mt-n8 mb-n7">
-        <v-col sm="1" class="ml-2 mr-n3">
-          <v-icon v-if="userData.publish.organization" color="green" small>
-            mdi-eye</v-icon
-          >
-          <v-icon v-if="!userData.publish.organization" color="red" small>
-            mdi-eye-off</v-icon
-          >
-        </v-col>
+      <v-row class="card-row mt-n8 mb-n7 d-flex align-center">
+        <v-col sm="1" class="ml-2 mr-n3"> </v-col>
         <v-col sm="3">
-          <p class="item-label">Name:</p>
+          <p class="item-label">
+            {{ dnsData.dns === "dns" ? "DNS" : "DNS keys" }}
+          </p>
         </v-col>
         <v-col sm="7">
-          <p>
-            {{ userData.name }}
-          </p>
+          <div class="mb-n4" >
+            <p>
+              {{ getDnsData(0) }}
+            </p>
+          </div>
+          <div>
+            <p>
+              {{ getDnsData(1) }}
+            </p>
+          </div>
         </v-col>
       </v-row>
     </div>
@@ -58,10 +53,22 @@
 
 <script>
 export default {
-  name: "UserCard",
+  name: "DnsCard",
   props: {
-    userData: Object,
+    dnsData: Object,
     title: String,
+  },
+  methods: {
+    getDnsData(i) {
+      if (this.dnsData.dns) {
+        return (
+          this.dnsData.dns[i].name + "(" + this.dnsData.dns[i].ip_address + ")"
+        );
+      } else if (this.dnsData.dns_keys) {
+        return this.dnsData.dns_keys[i];
+      }
+      return;
+    },
   },
 };
 </script>

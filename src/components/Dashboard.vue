@@ -9,18 +9,27 @@
       <v-col xs="12" sm="8">
         <AuthInfoCard :expires_at="expires_at" />
         <EventsCard :events="events" />
-        <StateFlagsCard :flags="state_flags.flags" :showAll="showAll" />
+        <StateFlagsCard
+          :flags="state_flags.flags"
+          :groups="state_flags.groups"
+          :showAll="showAll"
+        />
       </v-col>
       <v-col xs="12" sm="4">
-        <UserCard :userData="owner" :title="'Owner'" />
+        <UserCard :userData="owner" :title="'Owner:'" />
         <div v-if="showAll">
           <UserCard
             :key="user.name"
             v-for="user in administrative_contacts"
             :userData="user"
-            :title="'Administrative contact'"
+            :title="'Administrative contact:'"
           />
         </div>
+        <div v-if="!showAll">
+          <ContactCard :contacts="administrative_contacts" />
+        </div>
+        <DnsCard :dnsData="nsset" :title="'NSSet:'" />
+        <DnsCard :dnsData="keyset" :title="'KeySet:'" />
       </v-col>
     </v-row>
   </v-container>
@@ -31,6 +40,8 @@ import AuthInfoCard from "./Cards/AuthInfoCard";
 import EventsCard from "./Cards/EventsCard";
 import StateFlagsCard from "./Cards/StateFlagsCard";
 import UserCard from "./Cards/UserCard";
+import ContactCard from "./Cards/ContactsCard";
+import DnsCard from "./Cards/DnsCard";
 
 import data from "../../domain-detail.json";
 
@@ -41,6 +52,8 @@ export default {
     EventsCard,
     StateFlagsCard,
     UserCard,
+    ContactCard,
+    DnsCard,
   },
   data() {
     return {
