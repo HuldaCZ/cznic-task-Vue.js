@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <NavBar @toggle-side-bar="toggleSideBar" />
+    <NavBar @toggle-side-bar="toggleSideBar" @toggle-user="toggleUser" />
     <div class="main-container">
       <SideBar :mini="sideBarMini" />
       <Dashboard />
     </div>
-    <UserPopover />
+    <UserPopover v-if="user" />
   </v-app>
 </template>
 
@@ -28,11 +28,15 @@ export default {
   data() {
     return {
       sideBarMini: true,
+      user: false,
     };
   },
   methods: {
     toggleSideBar() {
       this.sideBarMini = !this.sideBarMini;
+    },
+    toggleUser() {
+      this.user = !this.user;
     },
   },
 };

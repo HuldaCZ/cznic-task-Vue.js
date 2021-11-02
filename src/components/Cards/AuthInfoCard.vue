@@ -5,8 +5,13 @@
         <v-col sm="3">
           <p class="item-label">AuthInfo:</p>
         </v-col>
-        <v-col sm="9">
-          <p>Button</p>
+        <v-col sm="5">
+          <v-btn x-small color="primary" @click="showPassMethod">
+            {{ showPass ? "HIDE" : "SHOW" }}</v-btn
+          >
+        </v-col>
+        <v-col sm="4">
+          <p v-if="showPass" class="item-label">Secret Pssword</p>
         </v-col>
       </v-row>
       <v-row class="card-row mt-n8 mb-n7">
@@ -28,6 +33,16 @@ export default {
   name: "AuthInfoCard",
   props: {
     expires_at: String,
+  },
+  data() {
+    return {
+      showPass: false,
+    };
+  },
+  methods: {
+    showPassMethod() {
+      this.showPass = !this.showPass;
+    },
   },
 };
 </script>

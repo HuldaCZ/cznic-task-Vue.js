@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     activeFlags(flagsInput) {
-      if (this.showAll) {
+      if (!this.showAll) {
         const flagsCopy = [...flagsInput];
         return flagsCopy.filter((flag) => {
           return flag.active;
@@ -83,7 +83,7 @@ export default {
 
     flagsGroup(i) {
       const flagsCopy = [...this.flags];
-      if (this.showAll && !i) {
+      if (!this.showAll && !i) {
         return flagsCopy;
       }
       const intersection = flagsCopy.filter((flag) =>
@@ -93,7 +93,7 @@ export default {
     },
 
     flagsGroupRest() {
-      if (this.showAll) {
+      if (!this.showAll) {
         return []
       }
       const flagsCopy = [...this.flags];

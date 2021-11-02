@@ -6,7 +6,7 @@
     </div>
 
     <v-row>
-      <v-col xs="12" sm="8">
+      <v-col xs="12" sm="12" md="8">
         <AuthInfoCard :expires_at="expires_at" />
         <EventsCard :events="events" />
         <StateFlagsCard
@@ -15,7 +15,7 @@
           :showAll="showAll"
         />
       </v-col>
-      <v-col xs="12" sm="4">
+      <v-col xs="12" sm="12" md="4">
         <UserCard :userData="owner" :title="'Owner:'" />
         <div v-if="showAll">
           <UserCard
