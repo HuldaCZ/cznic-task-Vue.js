@@ -2,15 +2,26 @@
   <v-container fluid>
     <div class="title-div">
       <h1>{{ fqdn }}</h1>
+      <v-switch v-model="showAll" :label="'Verbose view'"></v-switch>
     </div>
 
     <v-row>
       <v-col xs="12" sm="8">
         <AuthInfoCard :expires_at="expires_at" />
         <EventsCard :events="events" />
-        <StateFlagsCard :flags="state_flags.flags" />
+        <StateFlagsCard :flags="state_flags.flags" :showAll="showAll" />
       </v-col>
-      <v-col xs="12" sm="4"> </v-col>
+      <v-col xs="12" sm="4">
+        <UserCard :userData="owner" :title="'Owner'" />
+        <div v-if="showAll">
+          <UserCard
+            :key="user.name"
+            v-for="user in administrative_contacts"
+            :userData="user"
+            :title="'Administrative contact'"
+          />
+        </div>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -19,6 +30,7 @@
 import AuthInfoCard from "./Cards/AuthInfoCard";
 import EventsCard from "./Cards/EventsCard";
 import StateFlagsCard from "./Cards/StateFlagsCard";
+import UserCard from "./Cards/UserCard";
 
 import data from "../../domain-detail.json";
 
@@ -28,6 +40,7 @@ export default {
     AuthInfoCard,
     EventsCard,
     StateFlagsCard,
+    UserCard,
   },
   data() {
     return {
@@ -53,6 +66,5 @@ h1 {
 
 .title-div {
   margin-left: 16px;
-  
 }
 </style>

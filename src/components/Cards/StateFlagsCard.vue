@@ -7,13 +7,13 @@
     <div class="card-body mt-2 mb-2">
       <v-row key="" class="mn-2">
         <ul class="flag-list">
-          <div :key="flag.name" v-for="flag in flags">
-            <li v-if="flag.active && showAll">
+          <div :key="flag.name" v-for="flag in filterFlags()">
+            <li v-if="flag.active">
               <v-icon color="green"> mdi-checkbox-marked-circle</v-icon>
               <font color="green"> {{ flag.description }} </font>
             </li>
 
-            <li v-if="!flag.active && showAll">
+            <li v-if="!flag.active">
               <v-icon color="red"> mdi-close-circle</v-icon>
               <font color="red"> {{ flag.description }} </font>
             </li>
@@ -30,6 +30,18 @@ export default {
   props: {
     flags: [],
     showAll: Boolean,
+  },
+  methods: {
+    filterFlags() {
+      if (!this.showAll) {
+        const flagsCopy = [...this.flags];
+        return flagsCopy.filter((flag) => {
+          return flag.active;
+        });
+      } else {
+        return this.flags;
+      }
+    },
   },
 };
 </script>
@@ -54,9 +66,13 @@ h3 {
 
 .flag-list {
   list-style-type: none;
+  display: grid;
+  grid-template-rows: repeat(9, min-content);
+  grid-auto-flow: column;
+  grid-column-gap: 50px;
 }
 
 div {
-  font-size: 14px;
+  font-size: 13px;
 }
 </style>
