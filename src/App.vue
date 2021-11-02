@@ -1,12 +1,10 @@
 <template>
   <v-app>
-    <v-main>
-      <NavBar @toggle-side-bar="toggleSideBar" />
-      <div class="main-container">
-        <SideBar :mini="sideBarMini" />
-        <Dashboard />
-      </div>
-    </v-main>
+    <NavBar @toggle-side-bar="toggleSideBar" />
+    <div class="main-container">
+      <SideBar :mini="sideBarMini" />
+      <Dashboard />
+    </div>
   </v-app>
 </template>
 
