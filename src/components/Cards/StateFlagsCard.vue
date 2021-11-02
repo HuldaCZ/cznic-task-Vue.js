@@ -6,45 +6,51 @@
     <v-divider />
     <div class="card-body mt-2 mb-2">
       <v-row key="" class="mn-2">
-        <ul class="flag-list">
-          <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(0))">
-            <li v-if="flag.active">
-              <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
-              <font color="green"> {{ flag.description }} </font>
-            </li>
-
-            <li v-if="!flag.active">
-              <v-icon color="red" small> mdi-close-circle</v-icon>
-              <font color="red"> {{ flag.description }} </font>
-            </li>
-          </div>
-        </ul>
-        <ul class="flag-list">
-          <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(1))">
-            <li v-if="flag.active">
-              <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
-              <font color="green"> {{ flag.description }} </font>
-            </li>
-
-            <li v-if="!flag.active">
-              <v-icon color="red" small> mdi-close-circle</v-icon>
-              <font color="red"> {{ flag.description }} </font>
-            </li>
-          </div>
-        </ul>
+        <v-col>
           <ul class="flag-list">
-          <div :key="flag.name" v-for="flag in activeFlags(flagsGroupRest())">
-            <li v-if="flag.active">
-              <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
-              <font color="green"> {{ flag.description }} </font>
-            </li>
+            <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(0))">
+              <li v-if="flag.active">
+                <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
+                <font color="green"> {{ flag.description }} </font>
+              </li>
 
-            <li v-if="!flag.active">
-              <v-icon color="red" small> mdi-close-circle</v-icon>
-              <font color="red"> {{ flag.description }} </font>
-            </li>
-          </div>
-        </ul>
+              <li v-if="!flag.active">
+                <v-icon color="red" small> mdi-close-circle</v-icon>
+                <font color="red"> {{ flag.description }} </font>
+              </li>
+            </div>
+          </ul>
+        </v-col>
+        <v-col>
+          <ul class="flag-list">
+            <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(1))">
+              <li v-if="flag.active">
+                <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
+                <font color="green"> {{ flag.description }} </font>
+              </li>
+
+              <li v-if="!flag.active">
+                <v-icon color="red" small> mdi-close-circle</v-icon>
+                <font color="red"> {{ flag.description }} </font>
+              </li>
+            </div>
+          </ul>
+        </v-col>
+        <v-col>
+          <ul class="flag-list">
+            <div :key="flag.name" v-for="flag in activeFlags(flagsGroupRest())">
+              <li v-if="flag.active">
+                <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
+                <font color="green"> {{ flag.description }} </font>
+              </li>
+
+              <li v-if="!flag.active">
+                <v-icon color="red" small> mdi-close-circle</v-icon>
+                <font color="red"> {{ flag.description }} </font>
+              </li>
+            </div>
+          </ul>
+        </v-col>
       </v-row>
     </div>
   </v-card>
@@ -77,6 +83,9 @@ export default {
 
     flagsGroup(i) {
       const flagsCopy = [...this.flags];
+      if (this.showAll && !i) {
+        return flagsCopy;
+      }
       const intersection = flagsCopy.filter((flag) =>
         this.groups[i].includes(flag.name)
       );
@@ -84,6 +93,9 @@ export default {
     },
 
     flagsGroupRest() {
+      if (this.showAll) {
+        return []
+      }
       const flagsCopy = [...this.flags];
       const allGroups = [...this.groups[0], ...this.groups[1]];
       const intersection = flagsCopy.filter(
