@@ -2,10 +2,6 @@ import { mount, createLocalVue, shallowMount } from "@vue/test-utils";
 import NavBar from "@/components/NavBar.vue";
 import Vuetify from "vuetify";
 
-// Vue.use(Vuetify);
-
-// const localVue = createLocalVue();
-
 describe("NavBar.vue", () => {
   const localVue = createLocalVue();
   let vuetify;

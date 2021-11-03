@@ -9,12 +9,12 @@
         <v-col>
           <ul class="flag-list">
             <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(0))">
-              <li v-if="flag.active">
+              <li v-if="flag.active" data-testid="flag-active" >
                 <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
                 <font color="green"> {{ flag.description }} </font>
               </li>
 
-              <li v-if="!flag.active">
+              <li v-if="!flag.active" data-testid="flag-deactivated" >
                 <v-icon color="red" small> mdi-close-circle</v-icon>
                 <font color="red"> {{ flag.description }} </font>
               </li>
@@ -24,12 +24,12 @@
         <v-col>
           <ul class="flag-list">
             <div :key="flag.name" v-for="flag in activeFlags(flagsGroup(1))">
-              <li v-if="flag.active">
+              <li v-if="flag.active" data-testid="flag-active" >
                 <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
                 <font color="green"> {{ flag.description }} </font>
               </li>
 
-              <li v-if="!flag.active">
+              <li v-if="!flag.active" data-testid="flag-deactivated" >
                 <v-icon color="red" small> mdi-close-circle</v-icon>
                 <font color="red"> {{ flag.description }} </font>
               </li>
@@ -39,12 +39,12 @@
         <v-col>
           <ul class="flag-list">
             <div :key="flag.name" v-for="flag in activeFlags(flagsGroupRest())">
-              <li v-if="flag.active">
+              <li v-if="flag.active" data-testid="flag-active" >
                 <v-icon color="green" small> mdi-checkbox-marked-circle</v-icon>
                 <font color="green"> {{ flag.description }} </font>
               </li>
 
-              <li v-if="!flag.active">
+              <li v-if="!flag.active" data-testid="flag-deactivated" >
                 <v-icon color="red" small> mdi-close-circle</v-icon>
                 <font color="red"> {{ flag.description }} </font>
               </li>
@@ -63,11 +63,6 @@ export default {
     flags: [],
     groups: [],
     showAll: Boolean,
-  },
-  data() {
-    return {
-      group1: [],
-    };
   },
   methods: {
     activeFlags(flagsInput) {

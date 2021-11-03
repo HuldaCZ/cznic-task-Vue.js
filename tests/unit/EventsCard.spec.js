@@ -1,10 +1,6 @@
-import { mount, createLocalVue, shallowMount } from "@vue/test-utils";
+import { mount, createLocalVue } from "@vue/test-utils";
 import EventsCard from "@/components/Cards/EventsCard.vue";
 import Vuetify from "vuetify";
-
-// Vue.use(Vuetify);
-
-// const localVue = createLocalVue();
 
 describe("EventsCard.vue", () => {
   const localVue = createLocalVue();
