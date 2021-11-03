@@ -1,5 +1,5 @@
 <template>
-  <v-card class="popover-card pa-1" elevation="6" outlined >
+  <v-card class="popover-card pa-1" elevation="6" outlined  >
     <v-row class="mb-1 d-flex align-center ">
       <div class="d-flex align-center justify-center icon-div">
         <v-icon color="gray" large> mdi-account-circle</v-icon>

@@ -1,12 +1,12 @@
 <template>
-  <v-card elevation="2" outlined class="ma-3">
+  <v-card elevation="2" outlined class="ma-3" id="user-card">
     <div class="header">
       <h3>{{ title }}</h3>
     </div>
     <v-divider />
     <div class="card-body mt-2 mb-2">
       <v-row class="card-row">
-        <v-col sm="1" class="ml-2 mr-n3"> </v-col>
+        <v-col sm="1" class="ml-2"> </v-col>
         <v-col sm="3">
           <p class="item-label">Handle:</p>
         </v-col>
@@ -17,7 +17,7 @@
         </v-col>
       </v-row>
       <v-row class="card-row mt-n8 mb-n7">
-        <v-col sm="1" class="ml-2 mr-n3">
+        <v-col sm="1" class="ml-2">
           <v-icon v-if="userData.publish.organization" color="green" small>
             mdi-eye</v-icon
           >
@@ -35,7 +35,7 @@
         </v-col>
       </v-row>
       <v-row class="card-row mt-n8 mb-n7">
-        <v-col sm="1" class="ml-2 mr-n3">
+        <v-col sm="1" class="ml-2">
           <v-icon v-if="userData.publish.organization" color="green" small>
             mdi-eye</v-icon
           >

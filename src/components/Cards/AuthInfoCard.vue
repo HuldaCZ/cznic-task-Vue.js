@@ -6,12 +6,19 @@
           <p class="item-label">AuthInfo:</p>
         </v-col>
         <v-col sm="5">
-          <v-btn x-small color="primary" @click="showPassMethod">
-            {{ showPass ? "HIDE" : "SHOW" }}</v-btn
-          >
+          <div>
+            <v-btn
+              x-small
+              color="primary"
+              @click="showPassMethod"
+              data-testid="button-show-hide"
+            >
+              {{ showPass ? "HIDE" : "SHOW" }}</v-btn
+            >
+          </div>
         </v-col>
         <v-col sm="4">
-          <p v-if="showPass" class="item-label">Secret Pssword</p>
+          <p v-if="showPass" class="item-label" data-testid="password">Secret Pssword</p>
         </v-col>
       </v-row>
       <v-row class="card-row mt-n8 mb-n7">
