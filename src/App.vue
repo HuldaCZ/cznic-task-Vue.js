@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <NavBar @toggle-side-bar="toggleSideBar" @toggle-user="toggleUser" />
+    <NavBar @toggle-side-bar="toggleSideBar"  />
     <div class="main-container" id="main-container" >
       <SideBar :mini="sideBarMini" />
       <Dashboard />

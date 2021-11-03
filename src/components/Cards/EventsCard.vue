@@ -7,11 +7,11 @@
     <div class="card-body mt-2 mb-2">
       <v-row key="registered" class="mn-2">
         <v-col class="item-label">Create date:</v-col>
-        <v-col>
+        <v-col data-testid="registered-time" >
           {{ new Date(events.registered.timestamp).toLocaleString() }}
         </v-col>
         <v-col class="item-label">Registrar:</v-col>
-        <v-col class="registrar">{{
+        <v-col class="registrar" data-testid="registered-handle" >{{
           events.registered.registrar_handle
         }}</v-col>
       </v-row>
@@ -59,7 +59,9 @@ export default {
 };
 </script>
 
+
 <style scoped>
+
 .header {
   background: #ececec;
   padding-left: 15px;
