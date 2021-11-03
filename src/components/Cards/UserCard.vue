@@ -1,7 +1,7 @@
 <template>
   <v-card elevation="2" outlined class="ma-3" id="user-card">
     <div class="header">
-      <h3>{{ title }}</h3>
+      <h3 data-testid="user-card-title">{{ title }}</h3>
     </div>
     <v-divider />
     <div class="card-body mt-2 mb-2">
@@ -12,16 +12,28 @@
         </v-col>
         <v-col sm="7">
           <p class="handle-text">
-            <font color="cornflowerblue"> {{ userData.handle }}</font>
+            <font color="cornflowerblue" data-testid="user-card-handle">
+              {{ userData.handle }}</font
+            >
           </p>
         </v-col>
       </v-row>
       <v-row class="card-row mt-n8 mb-n7">
         <v-col sm="1" class="ml-2">
-          <v-icon v-if="userData.publish.organization" color="green" small>
+          <v-icon
+            v-if="userData.publish.organization"
+            data-testid="user-card-icon-org-green"
+            color="green"
+            small
+          >
             mdi-eye</v-icon
           >
-          <v-icon v-if="!userData.publish.organization" color="red" small>
+          <v-icon
+            v-if="!userData.publish.organization"
+            data-testid="user-card-icon-org-red"
+            color="red"
+            small
+          >
             mdi-eye-off</v-icon
           >
         </v-col>
@@ -29,17 +41,27 @@
           <p class="item-label">Organization:</p>
         </v-col>
         <v-col sm="7">
-          <p>
+          <p data-testid="user-card-organization">
             {{ userData.organization }}
           </p>
         </v-col>
       </v-row>
       <v-row class="card-row mt-n8 mb-n7">
         <v-col sm="1" class="ml-2">
-          <v-icon v-if="userData.publish.organization" color="green" small>
+          <v-icon
+            v-if="userData.publish.organization"
+            data-testid="user-card-icon-name-green"
+            color="green"
+            small
+          >
             mdi-eye</v-icon
           >
-          <v-icon v-if="!userData.publish.organization" color="red" small>
+          <v-icon
+            v-if="!userData.publish.organization"
+            data-testid="user-card-icon-name-red"
+            color="red"
+            small
+          >
             mdi-eye-off</v-icon
           >
         </v-col>
@@ -47,7 +69,7 @@
           <p class="item-label">Name:</p>
         </v-col>
         <v-col sm="7">
-          <p>
+          <p data-testid="user-card-name">
             {{ userData.name }}
           </p>
         </v-col>

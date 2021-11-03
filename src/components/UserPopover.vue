@@ -32,7 +32,7 @@ export default {
 <style scoped>
 .popover-card {
   position: fixed;
-  z-index: 200;
+  z-index: 1000;
   height: 130px;
   width: 280px;
   top: 45px;

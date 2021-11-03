@@ -8,11 +8,11 @@
       <v-row :key="contact.name" class="mt-n5 mb-n8" v-for="contact in contacts">
         <v-col sm="1" > </v-col>
         <v-col sm="3">
-          <p class="item-label">{{ contact.name }}</p>
+          <p class="item-label" data-testid="contact-name" >{{ contact.name }}</p>
         </v-col>
         <v-col sm="7">
           <p class="handle-text">
-            <font color="cornflowerblue"> {{ contact.handle }}</font>
+            <font color="cornflowerblue" data-testid="contact-handle" > {{ contact.handle }}</font>
           </p>
         </v-col>
       </v-row>

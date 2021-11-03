@@ -1,7 +1,7 @@
 <template>
   <v-card elevation="2" outlined class="ma-3">
     <div class="header">
-      <h3>{{ title }}</h3>
+      <h3 data-testid="dns-card-title">{{ title }}</h3>
     </div>
     <v-divider />
     <div class="card-body mt-2 mb-2">
@@ -11,7 +11,7 @@
           <p class="item-label">Handle:</p>
         </v-col>
         <v-col sm="7">
-          <p class="handle-text">
+          <p class="handle-text" data-testid="dns-card-handle">
             <font color="cornflowerblue"> {{ dnsData.handle }}</font>
           </p>
         </v-col>
@@ -22,7 +22,7 @@
           <p class="item-label">Registrar:</p>
         </v-col>
         <v-col sm="7">
-          <p>
+          <p data-testid="dns-card-registrar">
             {{ dnsData.registrar }}
           </p>
         </v-col>
@@ -30,18 +30,18 @@
       <v-row class="card-row mt-n8 mb-n7 d-flex align-center">
         <v-col sm="1" class="ml-2 mr-n3"> </v-col>
         <v-col sm="3">
-          <p class="item-label">
+          <p class="item-label" data-testid="dns-card-label" >
             {{ dnsData.dns === "dns" ? "DNS" : "DNS keys" }}
           </p>
         </v-col>
         <v-col sm="7">
-          <div class="mb-n4" >
-            <p>
+          <div class="mb-n4">
+            <p data-testid="dns-card-data-1" >
               {{ getDnsData(0) }}
             </p>
           </div>
           <div>
-            <p>
+            <p data-testid="dns-card-data-2" >
               {{ getDnsData(1) }}
             </p>
           </div>

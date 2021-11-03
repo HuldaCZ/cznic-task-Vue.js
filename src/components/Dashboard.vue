@@ -1,8 +1,12 @@
 <template>
   <v-container fluid>
     <div class="title-div">
-      <h1>{{ fqdn }}</h1>
-      <v-switch v-model="showAll" :label="'Verbose view'"></v-switch>
+      <h1 data-testid="dashboard-title" >{{ fqdn }}</h1>
+      <v-switch
+        v-model="showAll"
+        :label="'Verbose view'"
+        data-testid="dashboard-switch"
+      ></v-switch>
     </div>
 
     <v-row>
@@ -23,10 +27,11 @@
             v-for="user in administrative_contacts"
             :userData="user"
             :title="'Administrative contact:'"
+            data-testid="dashboard-user-card"
           />
         </div>
         <div v-if="!showAll">
-          <ContactCard :contacts="administrative_contacts" />
+          <ContactCard :contacts="administrative_contacts" data-testid="dashboard-contacts-card" />
         </div>
         <DnsCard :dnsData="nsset" :title="'NSSet:'" />
         <DnsCard :dnsData="keyset" :title="'KeySet:'" />
